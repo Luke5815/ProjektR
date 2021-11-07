@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>AWS  S3 Bucket Manager</title>
+<link href="main.css" rel="stylesheet" type="text/css">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="toppane "> <h1 class="textcenter titlestyle">AWS S3 BUCKET MANAGER </h1></div>
+
+        <div class="leftpane">
+            <h1 class="textcenter secondtitle">Upload text file to the cloud</h1>
+
+            <form class="center" action="/upload" method="POST">
+              File name: <input type="text" name="filename" id="filename"><br>
+              <br>
+              <textarea rows="4" cols="50" name="content" >Enter text here...</textarea><br>
+              <br>
+              <input type="submit">
+            </form>
+            <br>
+        </div>
+
+        <div class="middlepane center">
+            <h1 class="textcenter thirdtitle">List files in the bucket</h1>
+
+            <form class="center " action="/print" method="post">
+                <input type="submit">
+            </form>
+            <% if (keys) {%>
+            <ul class="center" id="FileList">
+                <% for (let key of keys) {%>
+                    <li>><%= key %></li>
+                <% } %>
+            </ul>
+            <% } %>
+        </div>
+
+        <div class="rightpane">
+            <h1 class="textcenter secondtitle">Read file from the cloud</h1>
+            <h1 class="textcenter secondtitle">(Kliknuti 2 puta ne znam zašto ne radi)</h1>
+            <form class="center" action="/read" method="POST">
+              File name: <input type="text" name="filename" id="filename">
+              <br>
+              <br>
+              <% if (reading!="") { %>
+              <textarea rows="4" cols="50" name="content" ><%= reading %></textarea><br>
+              <% } %>
+              <br>
+              <input type="submit">
+            </form>
+            <br>
+        </div>
+
+      </div>
+</body>
+</html>
